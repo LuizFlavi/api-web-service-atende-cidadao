@@ -1,5 +1,11 @@
+using api_web_service_atende_cidadao.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Text.Json.Serialization;
 
 namespace api_web_service_atende_cidadao
+
 {
     public class Program
     {
@@ -10,6 +16,12 @@ namespace api_web_service_atende_cidadao
             // Add services to the container.
 
             builder.Services.AddControllers();
+           
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+           
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -25,6 +37,7 @@ namespace api_web_service_atende_cidadao
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

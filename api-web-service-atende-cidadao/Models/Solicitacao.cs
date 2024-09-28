@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api_web_service_atende_cidadao.Models
@@ -14,13 +15,13 @@ namespace api_web_service_atende_cidadao.Models
         public string Titulo { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        [StringLength(500)]
         public string Descricao { get; set; }
 
         [Required]
         public DateTime DataCriacao { get; set; }
 
-        public DateTime? DataAtualizacao { get; set; }  
+        public DateTime? DataAtualizacao { get; set; }
 
         public enum StatusSolicitacao
         {
@@ -32,8 +33,7 @@ namespace api_web_service_atende_cidadao.Models
 
         public StatusSolicitacao Status { get; set; } = StatusSolicitacao.Pendente;
 
-        public int UsuarioId { get; set; }  // ID do usuário que fez a solicitação
-        public Usuario Usuario { get; set; }  // Navegação para o usuário
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; } 
     }
-
 }
